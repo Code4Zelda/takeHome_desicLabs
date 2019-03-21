@@ -1,0 +1,51 @@
+<html>
+<head>
+  <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <!-- Specify the client ID you created for your app in the Google Developers Console with the google-signin-client_id meta element. -->
+  <meta name="google-signin-client_id" content=674333517571-379klh6f7juqahk4cd15f82igb2ht135.apps.googleusercontent.com
+  >
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- JQuery CDN -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <!-- <script src="./script.js"></script> -->
+  <title>Sign In</title>
+  <link rel="stylesheet" href="css/style.css">
+
+<script >
+function onSignIn(googleUser) {
+  let profile = googleUser.getBasicProfile();
+  $("#pic").attr('src',profile.getImageUrl());
+  $("#email").text(profile.getEmail());
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+ }
+
+
+ function signOut() { 
+  let auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(()=>{
+    alert("You have been successfully signed out")
+  });
+}
+</script>
+</head>
+<body>
+  <div id="main-container">
+    <form id="signin" action="/" method="POST">
+      <input id="user" name="user" placeholder="user" type="text"></input>
+      <br>
+      <input id="pass" name="pass" placeholder="pass" type="text"></input>
+      <br>
+      <button id="submit" type="submit">Sign In</button>
+      <br>
+      <br>
+      <br>
+      <div class="g-signin2" type="submit" data-onsuccess="onSignIn"></div>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+#signin {
+  margin: auto;
+  width: 25%;
+  padding-top:5%;
+  padding-bottom: 5%;
+  text-align: center;
+  background-color: #d3d3d3;
+  border: 1px solid black;
+}
+
+#main-container {
+  /* display:flex;
+  align-items: center; */
+
+}
+.g-signin2 {
+ margin-left: 50px;
+}
+
+.textbox {
+color:plum;
+background-color: blueviolet;
+}
