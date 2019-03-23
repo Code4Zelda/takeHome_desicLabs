@@ -41,7 +41,7 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
 router.get('/auth/google',
   passport.authenticate('google', {scope: ['profile', 'email']})
   );
-
+// callback route for google  to redirect to 
 router.get('/auth/google/callback',
   passport.authenticate('google', {
     successRedirect : '/profile',
