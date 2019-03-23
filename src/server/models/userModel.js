@@ -13,10 +13,9 @@ const User = new Schema({
   password: String,
  google: {
   id: String,
-  token: String,
   name: String,
   email: String,
-  img: { data: Buffer, contentType: String }
+  image: String 
  }
 }, { timestamps: true });
 

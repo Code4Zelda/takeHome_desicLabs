@@ -1,17 +1,18 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/userModel');
+const keys = require('./keys');
 
 
 
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((user, done) => done(null, user));
+// passport.serializeUser((user, done) => done(null, user));
+// passport.deserializeUser((user, done) => done(null, user));
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: '674333517571-379klh6f7juqahk4cd15f82igb2ht135.apps.googleusercontent.com',
-      clientSecret: 'bfmedvfVuQSVhCWRAsSVsOGj',
+      clientID: keys.google.clientID,
+      clientSecret: keys.google.clientSecret,
       callbackURL: 'http://localhost:4000/auth/google/callback',
     },
     (accessToken, refreshToken, profile, done) => {
@@ -29,6 +30,7 @@ passport.use(
           newUser.google.id = profile.id;
           newUser.google.token = accessToken;
           newUser.google.name  = profile.displayName;
+          newUser.google.image = profile._json.picture;
           if (typeof profile.emails != 'undefined' && profile.emails.length > 0)
             newUser.google.email = profile.emails[0].value;
   
